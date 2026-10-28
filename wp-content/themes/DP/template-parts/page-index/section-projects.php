@@ -5,125 +5,119 @@
         <div class="section-line"></div>
         <p>Вот некоторые из моих лучших работ</p>
     </div>
+
     <div class="projects-grid">
-        <div class="project-card fade-in">
-            <div class="project-image" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">
-                <!-- Добавлен класс project-thumb-img -->
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/DevFolio.png"
-                     alt="DevFolio"
-                     class="project-thumb-img">
-            </div>
-            <div class="project-content">
-                <h3>Сайт портфолио "DevFolio"</h3>
-                <p>Сайт на котором вы сейчас находитесь так же входит в перечень моих кейсов.</p>
-                <div class="project-tags">
-                    <span class="tag">WordPress</span>
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JS</span>
-                    <span class="tag">AJAX</span>
-                    <span class="tag__ai">AI: QWEN</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">Смотреть →</a>
-                    <a href="#" class="project-link">GitHub →</a>
-                </div>
-            </div>
-        </div>
+        <?php
+        // Запрос к базе данных: получаем все посты типа 'project'
+        $args = array(
+                'post_type'      => 'project',
+                'posts_per_page' => -1, // Выводим все проекты. Если нужно ограничить, поставьте число, например 6
+                'orderby'        => 'date',
+                'order'          => 'DESC'
+        );
 
-        <div class="project-card fade-in">
-            <div class="project-image" style="background: linear-gradient(135deg, #06b6d4, #7c3aed);">
+        $loop = new WP_Query( $args );
 
-            </div>
-            <div class="project-content">
-                <h3>Crypto Tracker App</h3>
-                <p>Мобильное приложение для отслеживания криптовалют и рыночных трендов с уведомлениями.</p>
-                <div class="project-tags">
-                    <span class="tag">React Native</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">API</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">Смотреть →</a>
-                    <a href="#" class="project-link">GitHub →</a>
-                </div>
-            </div>
-        </div>
+        if ( $loop->have_posts() ) :
+            while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-        <div class="project-card fade-in">
-            <div class="project-image" style="background: linear-gradient(135deg, #f97316, #ec4899);">
+                <!-- Карточка проекта -->
+                <div class="project-card fade-in">
 
-            </div>
-            <div class="project-content">
-                <h3>Lumina E-commerce</h3>
-                <p>Высококонверсионный интернет-магазин с бесшовной интеграцией платежей и аналитикой.</p>
-                <div class="project-tags">
-                    <span class="tag">Next.js</span>
-                    <span class="tag">Stripe</span>
-                    <span class="tag">PostgreSQL</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">Смотреть →</a>
-                    <a href="#" class="project-link">GitHub →</a>
-                </div>
-            </div>
-        </div>
+                    <!-- Блок изображения/фона -->
+                    <div class="project-image" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">
+                        <?php
+                        // Проверяем, есть ли миниатюра у записи
+                        if ( has_post_thumbnail() ) {
+                            // Выводим изображение с классом project-thumb-img, как в вашем примере
+                            the_post_thumbnail( 'medium_large', array( 'class' => 'project-thumb-img' ) );
+                        } else {
+                            // Если картинки нет, оставляем пустой div или заглушку
+                            echo '<!-- Нет изображения -->';
+                        }
+                        ?>
+                    </div>
 
-        <div class="project-card fade-in">
-            <div class="project-image" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
+                    <!-- Контент карточки -->
+                    <div class="project-content">
+                        <!-- Заголовок проекта -->
+                        <h3><?php the_title(); ?></h3>
 
-            </div>
-            <div class="project-content">
-                <h3>AI Chat Assistant</h3>
-                <p>Интеллектуальный чат-бот с обработкой естественного языка и машинным обучением.</p>
-                <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">TensorFlow</span>
-                    <span class="tag">FastAPI</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">Смотреть →</a>
-                    <a href="#" class="project-link">GitHub →</a>
-                </div>
-            </div>
-        </div>
+                        <!-- Описание (берем краткое описание Excerpt или обрезанный контент) -->
+                        <p>
+                            <?php
+                            // Используем excerpt, если заполнено, иначе берем начало контента
+                            if ( has_excerpt() ) {
+                                the_excerpt();
+                            } else {
+                                echo wp_trim_words( get_the_content(), 20, '...' );
+                            }
+                            ?>
+                        </p>
 
-        <div class="project-card fade-in">
-            <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4);">
+                        <!-- Теги технологий -->
+                        <div class="project-tags">
+                            <?php
+                            // Получаем таксономию 'technology', которую мы регистрировали ранее
+                            // Если вы еще не создали таксономию, временно используйте стандартные теги post_tag
+                            $terms = get_the_terms( get_the_ID(), 'technology' );
 
-            </div>
-            <div class="project-content">
-                <h3>Real-time Collaboration</h3>
-                <p>Платформа для совместной работы команд с видеозвонками и общим редактором документов.</p>
-                <div class="project-tags">
-                    <span class="tag">Vue.js</span>
-                    <span class="tag">WebSocket</span>
-                    <span class="tag">WebRTC</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">Смотреть →</a>
-                    <a href="#" class="project-link">GitHub →</a>
-                </div>
-            </div>
-        </div>
+                            // Fallback: если таксономии technology нет, пробуем обычные теги
+                            if ( ! $terms || is_wp_error( $terms ) ) {
+                                $terms = get_the_terms( get_the_ID(), 'post_tag' );
+                            }
 
-        <div class="project-card fade-in">
-            <div class="project-image" style="background: linear-gradient(135deg, #ec4899, #f97316);">
+                            if ( $terms && ! is_wp_error( $terms ) ) :
+                                foreach ( $terms as $term ) :
+                                    // Определяем класс span в зависимости от названия термина (для AI тегов можно добавить логику позже)
+                                    $tag_class = 'tag';
 
-            </div>
-            <div class="project-content">
-                <h3>Game Platform</h3>
-                <p>Игровая платформа с рейтинговой системой, достижениями и социальными функциями.</p>
-                <div class="project-tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">C#</span>
-                    <span class="tag">Firebase</span>
+                                    // Пример логики для стиля __ai, если название содержит "AI"
+                                    if ( strpos( strtolower($term->name), 'ai' ) !== false ) {
+                                        $tag_class = 'tag__ai';
+                                    }
+                                    ?>
+                                    <span class="<?php echo esc_attr($tag_class); ?>"><?php echo esc_html($term->name); ?></span>
+                                <?php endforeach;
+                            endif; ?>
+                        </div>
+
+                        <!-- ССЫЛКИ (GitHub + Подробнее) -->
+                        <div class="project-links">
+
+                            <!-- 1. Кнопка "GitHub" -->
+                            <?php
+                            $github_url = get_post_meta( get_the_ID(), '_github_url', true );
+                            if ( ! empty( $github_url ) ) : ?>
+                                <a href="<?php echo esc_url($github_url); ?>" target="_blank" rel="noopener noreferrer" class="project-link github-btn">
+                                    GitHub →
+                                </a>
+                            <?php endif; ?>
+
+                            <!-- 2. Кнопка "Демо" (если нужна отдельная кнопка для live-сайта) -->
+                            <?php
+                            $demo_url = get_post_meta( get_the_ID(), '_demo_url', true );
+                            if ( ! empty( $demo_url ) ) : ?>
+                                <a href="<?php echo esc_url($demo_url); ?>" target="_blank" rel="noopener noreferrer" class="project-link demo-btn">
+                                    Демо →
+                                </a>
+                            <?php endif; ?>
+
+                            <!-- 3. Кнопка "Подробнее" (всегда видна, ведет на single-project.php) -->
+                            <a href="<?php the_permalink(); ?>" class="project-link detail-btn">
+                                Подробнее →
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="project-links">
-                    <a href="#" class="project-link">Смотреть →</a>
-                    <a href="#" class="project-link">GitHub →</a>
-                </div>
-            </div>
-        </div>
+
+            <?php endwhile;
+
+            // Важно сбросить данные запроса после цикла
+            wp_reset_postdata();
+
+        else : ?>
+            <p>Проекты пока не добавлены.</p>
+        <?php endif; ?>
     </div>
 </section>

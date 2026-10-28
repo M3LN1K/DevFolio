@@ -1,0 +1,138 @@
+# ============================================
+# WordPress Core
+# ============================================
+.osp/
+.gitconfig
+index2.php
+wp-admin/
+wp-includes/
+wp-content/ai1wm-backups
+wp-content/languages
+wp-content/plugins
+index.php
+license.txt
+readme.html
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+xmlrpc.php
+
+# ============================================
+# WordPress Uploads (медиафайлы)
+# ============================================
+wp-content/uploads/
+
+# ============================================
+# WordPress Cache
+# ============================================
+wp-content/cache/
+wp-content/*/cache/
+wp-content/*/cache-*
+
+# ============================================
+# WordPress Backups
+# ============================================
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+backup*
+backup-*
+dumps/
+backups/
+
+# ============================================
+# Конфигурационные файлы с чувствительными данными
+# ============================================
+wp-config.php
+.wp-env.json
+.local.env
+
+# ============================================
+# Логи и временные файлы
+# ============================================
+*.log
+debug.log
+error_log
+phpunit.xml
+phpcs.xml
+phpcs.xml.dist
+
+# ============================================
+# Системные файлы
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+.project
+.classpath
+.cpanel/
+*.orig
+
+# ============================================
+# IDE и редакторы
+# ============================================
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.tmproj
+*.bak
+
+# ============================================
+# NPM и зависимости
+# ============================================
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# ============================================
+# Сборка и компиляция
+# ============================================
+dist/
+build/
+*.map
+*.min.js
+*.min.css
+
+# ============================================
+# Композер (если используется)
+# ============================================
+/vendor/
+
+# ============================================
+# WordPress плагины (если не разрабатываете свои)
+# ============================================
+# wp-content/plugins/
+# Раскомментируйте, если не разрабатываете плагины
+
+# ============================================
+# WordPress темы (если не разрабатываете свою)
+# ============================================
+# wp-content/themes/twenty*
+# wp-content/themes/twentytwenty*
+# Раскомментируйте, если не разрабатываете свою тему
+
+# ============================================
+# Что ОСТАВИТЬ под версионным контролем:
+# ============================================
+# !wp-content/themes/ваша-тема/
+# !wp-content/plugins/ваш-плагин/
+# !wp-config-sample.php

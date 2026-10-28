@@ -11,24 +11,24 @@
             <p>Есть идея для проекта? Давайте обсудим, как я могу помочь воплотить её в жизнь.</p>
             <div class="contact-details">
                 <div class="contact-item">
-                    <div class="icon"></div>
+                    <div class="icon">📧</div>
                     <div>
                         <div style="color: var(--text-muted); font-size: 0.9rem;">Email</div>
-                        <div>hello@devfolio.com</div>
+                        <div>melnikoff-web@yandex.ru</div>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="icon">📱</div>
                     <div>
                         <div style="color: var(--text-muted); font-size: 0.9rem;">Телефон</div>
-                        <div>+1 (555) 123-4567</div>
+                        <div>8 (952) 088 37-30</div>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="icon">📍</div>
                     <div>
                         <div style="color: var(--text-muted); font-size: 0.9rem;">Локация</div>
-                        <div>San Francisco, CA</div>
+                        <div>Тверь</div>
                     </div>
                 </div>
             </div>

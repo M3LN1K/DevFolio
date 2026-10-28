@@ -3,6 +3,9 @@
 Template Name: Portfolio Template
 */
 get_header(); ?>
+
+
+
     <main class="site_content">
         <?php get_template_part('template-parts/page-index/section', 'hero') ?>
         <?php get_template_part('template-parts/page-index/section', 'stats') ?>

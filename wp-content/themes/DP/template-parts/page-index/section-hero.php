@@ -8,7 +8,7 @@
     </div>
     <div class="hero-content">
         <div class="hero-badge">👋 Привет, я разработчик</div>
-        <h1><?php the_title(); ?></h1>
+        <h1>Создаю цифровые<br>продукты</h1>
         <p class="hero-subtitle">
             Превращаю идеи в код. Специализируюсь на <span class="typing-text" id="typingText"></span>
         </p>

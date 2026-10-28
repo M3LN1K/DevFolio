@@ -8,15 +8,21 @@
     <div class="projects-grid">
         <div class="project-card fade-in">
             <div class="project-image" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">
-                <div class="project-icon"></div>
+                <!-- Добавлен класс project-thumb-img -->
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/DevFolio.png"
+                     alt="DevFolio"
+                     class="project-thumb-img">
             </div>
             <div class="project-content">
-                <h3>Neon Analytics Dashboard</h3>
-                <p>Платформа визуализации данных в реальном времени для бизнес-метрик с интерактивными графиками.</p>
+                <h3>Сайт портфолио "DevFolio"</h3>
+                <p>Сайт на котором вы сейчас находитесь так же входит в перечень моих кейсов.</p>
                 <div class="project-tags">
-                    <span class="tag">React</span>
-                    <span class="tag">D3.js</span>
-                    <span class="tag">Node.js</span>
+                    <span class="tag">WordPress</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JS</span>
+                    <span class="tag">AJAX</span>
+                    <span class="tag__ai">AI: QWEN</span>
                 </div>
                 <div class="project-links">
                     <a href="#" class="project-link">Смотреть →</a>
@@ -27,7 +33,7 @@
 
         <div class="project-card fade-in">
             <div class="project-image" style="background: linear-gradient(135deg, #06b6d4, #7c3aed);">
-                <div class="project-icon">📱</div>
+
             </div>
             <div class="project-content">
                 <h3>Crypto Tracker App</h3>
@@ -46,7 +52,7 @@
 
         <div class="project-card fade-in">
             <div class="project-image" style="background: linear-gradient(135deg, #f97316, #ec4899);">
-                <div class="project-icon">🛒</div>
+
             </div>
             <div class="project-content">
                 <h3>Lumina E-commerce</h3>
@@ -65,7 +71,7 @@
 
         <div class="project-card fade-in">
             <div class="project-image" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
-                <div class="project-icon">🤖</div>
+
             </div>
             <div class="project-content">
                 <h3>AI Chat Assistant</h3>
@@ -84,7 +90,7 @@
 
         <div class="project-card fade-in">
             <div class="project-image" style="background: linear-gradient(135deg, #8b5cf6, #06b6d4);">
-                <div class="project-icon">⚡</div>
+
             </div>
             <div class="project-content">
                 <h3>Real-time Collaboration</h3>
@@ -103,7 +109,7 @@
 
         <div class="project-card fade-in">
             <div class="project-image" style="background: linear-gradient(135deg, #ec4899, #f97316);">
-                <div class="project-icon">🎮</div>
+
             </div>
             <div class="project-content">
                 <h3>Game Platform</h3>

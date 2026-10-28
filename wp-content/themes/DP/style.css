@@ -19,6 +19,7 @@ Text Domain: my-custom-theme
 
 :root {
     --primary: #7c3aed;
+    --tag__ai: #06b6d4;
     --secondary: #ec4899;
     --accent: #06b6d4;
     --orange: #f97316;
@@ -240,7 +241,6 @@ nav {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     color: var(--text-muted);
     margin-bottom: 40px;
-    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -465,10 +465,12 @@ section {
     overflow: hidden;
     transition: all 0.4s ease;
     cursor: pointer;
+    /* Важно: убираем лишние трансформации при ховере, если они ломают верстку */
+    transform-style: preserve-3d;
 }
 
 .project-card:hover {
-    transform: translateY(-10px) rotateX(5deg);
+    transform: translateY(-10px);
     border-color: var(--primary);
     box-shadow: 0 20px 50px rgba(124, 58, 237, 0.3);
 }
@@ -476,30 +478,43 @@ section {
 .project-image {
     width: 100%;
     height: 220px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Убрали flex, чтобы картинка могла занять 100% */
 }
 
+/* Сетка поверх фона */
 .project-image::before {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" x="10" y="10" width="80" height="80" rx="5"/></svg>');
     background-size: 20px 20px;
+    z-index: 1;
+    pointer-events: none; /* Чтобы сетка не мешала кликать */
 }
 
-.project-image .project-icon {
-    font-size: 4rem;
-    z-index: 1;
+/* НОВЫЕ СТИЛИ ДЛЯ КАРТИНКИ */
+.project-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка заполняет блок, обрезаясь по краям */
+    object-position: center;
+    display: block;
+    position: relative;
+    z-index: 2; /* Картинка выше сетки */
+    transition: transform 0.6s ease;
+}
+
+/* Эффект приближения картинки при наведении на карточку */
+.project-card:hover .project-thumb-img {
+    transform: scale(1.05);
 }
 
 .project-content {
     padding: 25px;
+    position: relative;
+    z-index: 3;
 }
 
 .project-content h3 {
@@ -524,6 +539,15 @@ section {
 .tag {
     background: rgba(124, 58, 237, 0.2);
     color: var(--primary);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.tag__ai {
+    background: rgba(124, 58, 237, 0.2);
+    color: #f30bde;
     padding: 5px 12px;
     border-radius: 15px;
     font-size: 0.85rem;

@@ -6,39 +6,40 @@
         <p>Мой профессиональный путь</p>
     </div>
     <div class="timeline">
+
         <div class="timeline-item fade-in">
             <div class="timeline-content">
-                <div class="timeline-date">2023 — настоящее время</div>
-                <h3>Senior Full-Stack Developer</h3>
-                <h4>Tech Company</h4>
-                <p>Разработка масштабируемых веб-приложений, менторинг junior разработчиков, архитектурные решения.</p>
+                <div class="timeline-date">2026 — настоящее время</div>
+                <h3>Работаю в веб-студии</h3>
+                <h4>Вхожу в состав веб-программистов</h4>
+                <p>Выполняю задачи от крупных компаний: Газпром, Роснефть, I-con, Attik. Работаю с разными CMS: Bitrix, WordPress, ModX, Tilda.</p>
             </div>
         </div>
 
         <div class="timeline-item fade-in">
             <div class="timeline-content">
-                <div class="timeline-date">2021 — 2023</div>
-                <h3>Middle Frontend Developer</h3>
-                <h4>Digital Agency</h4>
-                <p>Создание интерактивных интерфейсов, оптимизация производительности, работа с большими данными.</p>
+                <div class="timeline-date">2022 — 2026</div>
+                <h3>Поиск работы</h3>
+                <h4>Ищу работу в IT сфере</h4>
+                <p>Активно ищу работу в сфере веб-разработки. Попутно разрабатываю сайты на заказ для знакомых и друзей.</p>
             </div>
         </div>
 
         <div class="timeline-item fade-in">
             <div class="timeline-content">
-                <div class="timeline-date">2020 — 2021</div>
-                <h3>Junior Developer</h3>
-                <h4>Startup</h4>
-                <p>Разработка MVP продуктов, изучение современных технологий, участие в хакатонах.</p>
+                <div class="timeline-date">2018 — 2022</div>
+                <h3>Студенчество</h3>
+                <h4>Получаю образование в учебном заведении по специальности программист</h4>
+                <p>Нарабатываю теоретический и практический опыт в веб-программировании и разрабатываю свой первый сайт в рамках проекта дипломной работы.</p>
             </div>
         </div>
 
         <div class="timeline-item fade-in">
             <div class="timeline-content">
-                <div class="timeline-date">2019 — 2020</div>
-                <h3>Freelance Developer</h3>
-                <h4>Self-employed</h4>
-                <p>Создание сайтов и веб-приложений для малого бизнеса, первые коммерческие проекты.</p>
+                <div class="timeline-date">2015 — 2018</div>
+                <h3>Школьные годы</h3>
+                <h4>Интерес к программированию</h4>
+                <p>Начинаю интересоваться программированием, пишу простых ботов для каналов в соцсети Telegram.</p>
             </div>
         </div>
     </div>

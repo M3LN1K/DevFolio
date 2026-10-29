@@ -23,7 +23,15 @@ function my_theme_enqueue_scripts() {
     );
 
     // CSS файлы в папке assets/css
-    // wp_enqueue_style( 'my-theme-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0' );
+    /**
+     * Подключаем стили для детальной страницы проекта
+     * Только если мы находимся на single-view типа 'project'
+     */
+    wp_enqueue_style(
+      'single-project-style',
+      get_template_directory_uri() . '/assets/css/single-project.css',
+      array(),
+    );
 
     // JS файлы в папке assets/js
     wp_enqueue_script(
@@ -121,10 +129,52 @@ function render_project_metabox( $post ) {
     // Получаем текущие значения, если они уже сохранены
     $github_url = get_post_meta( $post->ID, '_github_url', true );
     $demo_url   = get_post_meta( $post->ID, '_demo_url', true );
+    $role         = get_post_meta( $post->ID, '_project_role', true );
+    $duration     = get_post_meta( $post->ID, '_project_duration', true );
+    $client       = get_post_meta( $post->ID, '_project_client', true );
+    $challenge    = get_post_meta( $post->ID, '_project_challenge', true );
+    $solution     = get_post_meta( $post->ID, '_project_solution', true );
 
     // Не забываем про nonce для безопасности
     wp_nonce_field( 'save_project_meta', 'project_meta_nonce' );
     ?>
+    <style>
+        .metabox-field { margin-bottom: 15px; }
+        .metabox-label { display:block; font-weight:bold; margin-bottom:5px; color:#333; }
+        .metabox-input, .metabox-textarea { width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; box-sizing:border-box; }
+        .metabox-textarea { height: 100px; resize: vertical; }
+    </style>
+
+    <div class="metabox-field">
+        <label class="metabox-label">Клиент / Заказчик</label>
+        <input type="text" name="_project_client" value="<?php echo esc_attr($client); ?>" class="metabox-input" placeholder="Например: Личный проект или Название компании">
+    </div>
+
+    <div class="metabox-field">
+        <label class="metabox-label">Моя роль</label>
+        <input type="text" name="_project_role" value="<?php echo esc_attr($role); ?>" class="metabox-input" placeholder="Fullstack Developer / Frontend Lead">
+    </div>
+
+    <div class="metabox-field">
+        <label class="metabox-label">Сроки реализации</label>
+        <input type="text" name="_project_duration" value="<?php echo esc_attr($duration); ?>" class="metabox-input" placeholder="Например: 2 недели / Q3 2026">
+    </div>
+
+    <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
+
+    <div class="metabox-field">
+        <label class="metabox-label">🎯 Задача (Challenge)</label>
+        <textarea name="_project_challenge" class="metabox-textarea" placeholder="Опиши главную боль клиента или техническую сложность..."><?php echo esc_textarea($challenge); ?></textarea>
+    </div>
+
+    <div class="metabox-field">
+        <label class="metabox-label">💡 Решение (Solution)</label>
+        <textarea name="_project_solution" class="metabox-textarea" placeholder="Какое архитектурное решение принял? Какие технологии выбрал и почему?"><?php echo esc_textarea($solution); ?></textarea>
+    </div>
+
+    <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
+
+
     <p>
         <label for="_github_url"><strong>Ссылка на GitHub:</strong></label><br/>
         <input type="url" id="_github_url" name="_github_url" value="<?php echo esc_attr($github_url); ?>" style="width:100%;" placeholder="https://github.com/user/repo" />
@@ -154,14 +204,12 @@ function save_project_meta( $post_id ) {
         return;
     }
 
-    // Сохраняем GitHub URL
-    if ( isset( $_POST['_github_url'] ) ) {
-        update_post_meta( $post_id, '_github_url', sanitize_text_field( $_POST['_github_url'] ) );
-    }
+    $fields = array('_project_client', '_project_role', '_project_duration', '_project_challenge', '_project_solution', '_github_url', '_demo_url');
 
-    // Сохраняем Demo URL
-    if ( isset( $_POST['_demo_url'] ) ) {
-        update_post_meta( $post_id, '_demo_url', sanitize_text_field( $_POST['_demo_url'] ) );
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            update_post_meta($post_id, $field, sanitize_text_field(wp_unslash($_POST[$field])));
+        }
     }
 }
 add_action( 'save_post_project', 'save_project_meta' );
